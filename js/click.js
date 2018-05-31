@@ -9,21 +9,22 @@ function getRandomColor() {
 
 $(document).ready(function() {
   var scene = document.querySelector('a-scene');
-  var boxes = [];
   var marker = document.querySelector('#marker' + 0);
   var position = marker.object3D.getWorldPosition();
-  position.x = 5;
+  position.x = -4.5;
   position.y = 1.5;
-  position.z = -5;
+  position.z = -3;
 
   var box = document.createElement('a-box');
+  var text = document.createElement('a-text');
   box.setAttribute('color', getRandomColor());
   box.setAttribute('position', position);
-  boxes.push(box);
-
-  var text = document.createElement('a-text');
+  box.addEventListener('click', function() {
+    box.setAttribute('color', getRandomColor());
+    text.setAttribute('value', 'Good job!');
+  });
   text.setAttribute('value', 'Focus the cursor on me!');
-  position.x = 3;
+  position.x += 1;
   text.setAttribute('position', position);
 
   scene.appendChild(box);
