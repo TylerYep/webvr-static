@@ -7,6 +7,8 @@ function getRandomColor() {
   return color;
 }
 
+VIDEOS = ["videos/suthep.mp4", "videos/waterfall.mp4", "https://ucarecdn.com/fadab25d-0b3a-45f7-8ef5-85318e92a261/"]
+
 $(document).ready(function() {
   var scene = document.querySelector('a-scene');
   var marker = document.querySelector('#marker' + 0);
@@ -20,6 +22,10 @@ $(document).ready(function() {
   box.setAttribute('color', getRandomColor());
   box.setAttribute('position', position);
   box.addEventListener('click', function() {
+    var vid = document.querySelector('video');
+    var i = (Number(vid.getAttribute('tag')) + 1) % VIDEOS.length;
+    vid.setAttribute('src', VIDEOS[i]);
+    vid.setAttribute('tag', i);
     box.setAttribute('color', getRandomColor());
     text.setAttribute('value', 'Good job!');
   });
@@ -29,5 +35,4 @@ $(document).ready(function() {
 
   scene.appendChild(box);
   scene.appendChild(text);
-
 });
